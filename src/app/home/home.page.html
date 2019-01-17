@@ -1,12 +1,31 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>
-      Ionic Blank
+        Ionic Blank
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://beta.ionicframework.com/docs/">docs</a> will be your guide.</p>
+    The world is your oyster.
+    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://beta.ionicframework.com/docs/">docs</a> will be your guide.</p>
+  
+    <p>{{movie.Title}}</p>
+    <!-- <ion-list>
+    <ion-item *ngFor="let movie of movies" routerLink="/detail/{{movie.id}}">
+      <ion-icon name="desktop" slot="start"></ion-icon>
+      {{movie.Title}}
+      <div class="item-note" slot="end">
+        {{movie.Plot}}
+      </div>
+    </ion-item>
+  </ion-list> -->
+  <!--
+    <div *ngIf="selectedItem" padding>
+      You navigated here from <b>{{selectedItem.title }}</b>
+    </div>
+  -->
 </ion-content>
