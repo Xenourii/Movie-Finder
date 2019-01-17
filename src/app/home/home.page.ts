@@ -11,6 +11,8 @@ import { OmdbApiService } from '../services/omdb-api.service';
 export class HomePage implements OnInit{
   searchResult: SearchResult;
   searchText: string;
+  currentPageNumber : number;
+
   constructor(public api: OmdbApiService, public loadingController: LoadingController) { }
 
   ngOnInit() {
@@ -18,20 +20,40 @@ export class HomePage implements OnInit{
   }
 
   async getMoviesByName() {
-    const loading = await this.loadingController.create({
-      message: 'Please wait...'
-    });
-    //await loading.present();
 
-    this.api.getMoviesByName(this.searchText)
+    this.currentPageNumber = 1;
+
+    this.api.getMoviesByName(this.searchText, this.currentPageNumber)
       .subscribe(res => {
         console.log(res);
         this.searchResult = res;
         console.log("DEBUG : " + this.searchResult.Search);
-        //loading.dismiss();
       }, err => {
         console.log(err);
-        //loading.dismiss();
       });
+  }
+
+getMoreMovies(infiniteScroll){
+    this.currentPageNumber++;
+
+    setTimeout(() => {
+      if(this.currentPageNumber * 10 < this.searchResult.totalResults){
+        console.log("page=" + this.currentPageNumber + " total=" + this.searchResult.totalResults);
+        this.api.getMoviesByName(this.searchText, this.currentPageNumber)
+        .subscribe(res => {
+          res.Search.array.forEach(element => {
+            this.searchResult.Search.push(element);
+          });
+          console.log('Async operation has ended');
+          infiniteScroll.target.complete();
+        }, err => {
+          console.log(err);
+        });
+      };
+    }, 500);
+
+
+
+    
   }
 }

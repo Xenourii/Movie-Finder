@@ -6,7 +6,7 @@ import { forkJoin } from 'rxjs';import { Observable, of, throwError } from 'rxjs
 //https://www.djamware.com/post/5b94bb1d80aca74669894415/ionic-4-angular-6-tutorial-call-multiple-services-at-once
 
 const omdbApiUrl: string = "http://www.omdbapi.com/?apikey=75522b56";
-const omdbImageApiUrl: string = "http://img.omdbapi.com/";
+const omdbImageApiUrl: string = "http://img.omdbapi.com/?apikey=75522b56";
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +21,8 @@ export class OmdbApiService {
     return response;
   }
 
-  getMoviesByName(name: string): Observable<any> {
-    const url = `${omdbApiUrl}&s=${name}*`;
+  getMoviesByName(name: string, page: number): Observable<any> {
+    const url = `${omdbApiUrl}&s=${name}*&page=${page}`;
     let response = this.http.get(url);
     return response;
   }
