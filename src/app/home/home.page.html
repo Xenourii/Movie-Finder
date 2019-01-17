@@ -4,16 +4,28 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-        Ionic Blank
+        Movie Finder
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://beta.ionicframework.com/docs/">docs</a> will be your guide.</p>
-  
-    <p>{{movie.Title}}</p>
+    <!-- Animated Searchbar -->
+    <ion-searchbar animated placeholder="Search a movie by name" type="search" [(ngModel)]="searchText" (ionChange)="getMoviesByName()"></ion-searchbar>
+    
+    <ion-list>
+      <ion-item *ngFor="let searchMovie of searchResult.Search">
+          <ion-card class="card-background-page">
+              <img class="card-image" src="{{searchMovie.Poster}}"/>
+              <div class="card-transparent"></div>
+              <div class="card-title">{{searchMovie.Title}}</div>
+              <div class="card-subtitle">{{searchMovie.Year}}</div>
+            </ion-card>
+      </ion-item>
+    </ion-list>
+    
+    
+    <!-- <p>{{searchResult.Search}}</p> -->
     <!-- <ion-list>
     <ion-item *ngFor="let movie of movies" routerLink="/detail/{{movie.id}}">
       <ion-icon name="desktop" slot="start"></ion-icon>

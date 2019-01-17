@@ -1,4 +1,4 @@
-import { Movie } from './../../models/movie';
+import { SearchResult } from './../../models/searchResult';
 import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import { OmdbApiService } from '../services/omdb-api.service';
@@ -9,26 +9,29 @@ import { OmdbApiService } from '../services/omdb-api.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit{
-  movie: Movie;
+  searchResult: SearchResult;
+  searchText: string;
   constructor(public api: OmdbApiService, public loadingController: LoadingController) { }
 
   ngOnInit() {
-    this.getMovies();
+    //this.getMoviesByName("superman");
   }
 
-  async getMovies() {
+  async getMoviesByName() {
     const loading = await this.loadingController.create({
       message: 'Please wait...'
     });
-    await loading.present();
-    this.api.getMovieByName("Hello")
+    //await loading.present();
+
+    this.api.getMoviesByName(this.searchText)
       .subscribe(res => {
         console.log(res);
-        this.movie = res;
-        loading.dismiss();
+        this.searchResult = res;
+        console.log("DEBUG : " + this.searchResult.Search);
+        //loading.dismiss();
       }, err => {
         console.log(err);
-        loading.dismiss();
+        //loading.dismiss();
       });
   }
 }

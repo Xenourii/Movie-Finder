@@ -1,6 +1,8 @@
 {
   "name": "ajal Movie Finder",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular",
   "id": "eb209303"
 }

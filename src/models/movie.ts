@@ -26,4 +26,3 @@ export interface Movie {
     Website?: string;
     Response?: boolean;
   }
-
