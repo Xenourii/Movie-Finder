@@ -76,14 +76,8 @@
   --ion-color-light-tint: #f5f6f9;
 }
 
+
 .card-background-page {
-
-  ion-card {
-    display: inline;
-    position: relative;
-    text-align: center;
-  }
-
   .card-transparent {
     background: linear-gradient(transparent 60%, black);
     height: 100%;
