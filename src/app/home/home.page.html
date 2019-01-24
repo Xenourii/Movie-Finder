@@ -3,6 +3,11 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
+    <ion-buttons slot="secondary">
+        <ion-button (click)="toggleSearchBar()">
+          <ion-icon slot="icon-only" name="search"></ion-icon>
+        </ion-button>
+      </ion-buttons>
     <ion-title>
         Movie Finder
     </ion-title>
@@ -11,7 +16,7 @@
 
 <ion-content padding>
     <!-- Animated Searchbar -->
-    <ion-searchbar id="searchbar" animated placeholder="Search a movie by name" type="search" [(ngModel)]="searchText" (ionChange)="getMoviesByName()"></ion-searchbar>
+    <ion-searchbar *ngIf="isSearchBarDisplayed" id="searchbar" animated placeholder="Search a movie by name" type="search" [(ngModel)]="searchText" (ionChange)="getMoviesByName()"></ion-searchbar>
     
     <ion-grid fixed>
         <ion-row>

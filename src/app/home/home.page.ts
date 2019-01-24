@@ -11,7 +11,9 @@ import { OmdbApiService } from '../services/omdb-api.service';
 export class HomePage implements OnInit{
   searchResult: SearchResult;
   searchText: string;
-  currentPageNumber : number;
+  currentPageNumber: number;
+
+  isSearchBarDisplayed: boolean = true;
 
   constructor(public api: OmdbApiService, public loadingController: LoadingController) { }
 
@@ -37,7 +39,10 @@ export class HomePage implements OnInit{
     };
       console.log('Async operation has ended');
         infiniteScroll.target.complete();
-        console.log("complete");
-    
+        console.log("complete");  
+  }
+
+  toggleSearchBar(){
+    this.isSearchBarDisplayed = !this.isSearchBarDisplayed;
   }
 }
