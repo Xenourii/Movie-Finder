@@ -21,7 +21,7 @@ import { HTTP } from '@ionic-native/http/ngx';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    HTTP
+    HTTP  
   ],
   bootstrap: [AppComponent]
 })
