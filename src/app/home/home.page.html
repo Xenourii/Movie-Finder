@@ -11,8 +11,8 @@
 
 <ion-content padding>
     <!-- Animated Searchbar -->
-    <ion-searchbar animated placeholder="Search a movie by name" type="search" [(ngModel)]="searchText" (ionChange)="getMoviesByName()"></ion-searchbar>
-
+    <ion-searchbar id="searchbar" animated placeholder="Search a movie by name" type="search" [(ngModel)]="searchText" (ionChange)="getMoviesByName()"></ion-searchbar>
+    
     <ion-grid fixed>
         <ion-row>
           <ion-col size-xs="12" size-sm="6" size-md="4" *ngFor="let searchMovie of searchResult.Search">
