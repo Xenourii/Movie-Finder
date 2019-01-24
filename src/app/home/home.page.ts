@@ -20,40 +20,26 @@ export class HomePage implements OnInit{
   }
 
   async getMoviesByName() {
-
     this.currentPageNumber = 1;
-
-    this.api.getMoviesByName(this.searchText, this.currentPageNumber)
-      .subscribe(res => {
-        console.log(res);
-        this.searchResult = res;
-        console.log("DEBUG : " + this.searchResult.Search);
-      }, err => {
-        console.log(err);
-      });
+    this.searchResult = await this.api.getMoviesByName(this.searchText, this.currentPageNumber);
   }
 
-getMoreMovies(infiniteScroll){
+  async getMoreMovies(infiniteScroll){
     this.currentPageNumber++;
 
-    setTimeout(() => {
+    setTimeout(async () => {
       if(this.currentPageNumber * 10 < this.searchResult.totalResults){
         console.log("page=" + this.currentPageNumber + " total=" + this.searchResult.totalResults);
-        this.api.getMoviesByName(this.searchText, this.currentPageNumber)
-        .subscribe(res => {
-          res.Search.array.forEach(element => {
-            this.searchResult.Search.push(element);
-          });
-          console.log('Async operation has ended');
-          infiniteScroll.target.complete();
-        }, err => {
-          console.log(err);
+        var res = await this.api.getMoviesByName(this.searchText, this.currentPageNumber);
+        res.Search.forEach(element => {
+          this.searchResult.Search.push(element);
         });
+          
       };
+        console.log('Async operation has ended');
+          infiniteScroll.target.complete();
+          console.log("complete");
     }, 500);
-
-
-
     
   }
 }

@@ -1,5 +1,6 @@
 import { HttpClientProviderService } from './http-client-provider.service';
 import { Injectable } from '@angular/core';
+import { SearchResult } from './../../models/searchResult';
 
 import { forkJoin } from 'rxjs';import { Observable, of, throwError } from 'rxjs';
 
@@ -15,15 +16,17 @@ const omdbImageApiUrl: string = "http://img.omdbapi.com/?apikey=75522b56";
 export class OmdbApiService {
 
   constructor(private http: HttpClientProviderService) { }
-  getMovieByName(name: string): Observable<any> {
+
+  async getMovieByName(name: string) {
     const url = `${omdbApiUrl}&t=${name}`;
-    let response = this.http.get(url);
+    let response = await this.http.get(url);
     return response;
   }
 
-  getMoviesByName(name: string, page: number): Observable<any> {
+  async getMoviesByName(name: string, page: number) : Promise<SearchResult> {
     const url = `${omdbApiUrl}&s=${name}*&page=${page}`;
-    let response = this.http.get(url);
-    return response;
+    let response = await this.http.get(url);
+    var searchResult = response as SearchResult;
+    return searchResult;
   }
 }

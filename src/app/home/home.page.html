@@ -12,7 +12,7 @@
 <ion-content padding>
     <!-- Animated Searchbar -->
     <ion-searchbar animated placeholder="Search a movie by name" type="search" [(ngModel)]="searchText" (ionChange)="getMoviesByName()"></ion-searchbar>
-    
+
     <ion-list>
       <ion-item *ngFor="let searchMovie of searchResult.Search">
           <ion-card class="card-background-page">
@@ -22,29 +22,13 @@
               <div class="card-subtitle">{{searchMovie.Year}}</div>
             </ion-card>
       </ion-item>
-
-      <ion-infinite-scroll (ionInfinite)="getMoreMovies()">
-          <ion-infinite-scroll-content
-            loadingSpinner="bubbles"
-            loadingText="Loading more data…">
-          </ion-infinite-scroll-content>
-        </ion-infinite-scroll>
     </ion-list>
+
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="getMoreMovies($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading more data…">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
     
-    
-    <!-- <p>{{searchResult.Search}}</p> -->
-    <!-- <ion-list>
-    <ion-item *ngFor="let movie of movies" routerLink="/detail/{{movie.id}}">
-      <ion-icon name="desktop" slot="start"></ion-icon>
-      {{movie.Title}}
-      <div class="item-note" slot="end">
-        {{movie.Plot}}
-      </div>
-    </ion-item>
-  </ion-list> -->
-  <!--
-    <div *ngIf="selectedItem" padding>
-      You navigated here from <b>{{selectedItem.title }}</b>
-    </div>
-  -->
 </ion-content>
