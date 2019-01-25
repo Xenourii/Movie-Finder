@@ -1,21 +1,20 @@
+import { MediaType } from './../../models/media-type.enum';
 import { LoadingController } from '@ionic/angular';
-import { SearchResult } from '../../models/searchResult';
-import { Component } from '@angular/core';
+import { SearchResult } from './../../models/searchResult';
 import { OmdbApiService } from '../services/omdb-api.service';
 
-@Component({
-  selector: 'app-movieTab',
-  templateUrl: 'movieTab.page.html',
-  styleUrls: ['movieTab.page.scss']
-})
-export class MovieTabPage {
-  searchResult: SearchResult;
-  searchText: string;
-  currentPageNumber: number;
-  isSearchBarDisplayed: boolean = true;  
+export class MediaTabPage {
+  private searchText: string;
 
-  constructor(public api: OmdbApiService, public loadingController: LoadingController) { }
-  async getMoviesByName() {
+  searchResult: SearchResult;
+  
+  currentPageNumber: number;
+  isSearchBarDisplayed: boolean = true;
+
+  constructor(public api: OmdbApiService, public loadingController: LoadingController, public mediaType : MediaType) { }
+
+  async getMoviesByName(searchBarEvent) {
+    this.searchText = searchBarEvent.detail.value;
     this.currentPageNumber = 1;
     this.searchResult = await this.api.getMoviesByName(this.searchText, this.currentPageNumber);
   }

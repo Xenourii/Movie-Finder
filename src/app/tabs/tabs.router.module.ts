@@ -12,7 +12,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../movieTab/movieTab.module#MovieTabPageModule'
+            loadChildren: '../mediaTab/movieTab/movieTab.module#MovieTabPageModule'
           }
         ]
       },
@@ -21,7 +21,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../serieTab/serieTab.module#SerieTabPageModule'
+            loadChildren: '../mediaTab/serieTab/serieTab.module#SerieTabPageModule'
           }
         ]
       },
