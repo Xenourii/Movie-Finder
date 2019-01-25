@@ -1,25 +1,20 @@
-import { SearchResult } from './../../models/searchResult';
-import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
+import { SearchResult } from '../../models/searchResult';
+import { Component } from '@angular/core';
 import { OmdbApiService } from '../services/omdb-api.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-movieTab',
+  templateUrl: 'movieTab.page.html',
+  styleUrls: ['movieTab.page.scss']
 })
-export class HomePage implements OnInit{
+export class MovieTabPage {
   searchResult: SearchResult;
   searchText: string;
   currentPageNumber: number;
-
-  isSearchBarDisplayed: boolean = true;
+  isSearchBarDisplayed: boolean = true;  
 
   constructor(public api: OmdbApiService, public loadingController: LoadingController) { }
-
-  ngOnInit() {
-  }
-
   async getMoviesByName() {
     this.currentPageNumber = 1;
     this.searchResult = await this.api.getMoviesByName(this.searchText, this.currentPageNumber);
@@ -44,4 +39,5 @@ export class HomePage implements OnInit{
   toggleSearchBar(){
     this.isSearchBarDisplayed = !this.isSearchBarDisplayed;
   }
+
 }

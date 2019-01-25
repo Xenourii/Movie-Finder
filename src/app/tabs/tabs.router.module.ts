@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TabsPage } from './tabs.page';
+import { MovieTabPage } from './tabs.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: TabsPage,
+    component: MovieTabPage,
     children: [
       {
-        path: 'tab1',
+        path: 'movieTab',
         children: [
           {
             path: '',
-            loadChildren: '../tab1/tab1.module#Tab1PageModule'
+            loadChildren: '../movieTab/movieTab.module#MovieTabPageModule'
           }
         ]
       },
@@ -36,7 +36,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: 'tab1',
+        redirectTo: 'movieTab',
         pathMatch: 'full'
       }
     ]
