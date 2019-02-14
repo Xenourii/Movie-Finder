@@ -1,9 +1,11 @@
+import { SearchMedia } from './../../models/searchMedia';
 import { MediaType } from './../../models/media-type.enum';
 import { LoadingController } from '@ionic/angular';
 import { SearchResult } from './../../models/searchResult';
 import { OmdbApiService } from '../services/omdb-api.service';
+import { Router } from '@angular/router';
 
-export class MediaTabPage {
+export abstract class MediaTabPage {
   searchResult: SearchResult;
   
   currentPageNumber: number;
@@ -11,27 +13,16 @@ export class MediaTabPage {
 
   searchText: string;
 
-  constructor(public api: OmdbApiService, public loadingController: LoadingController, public mediaType : MediaType) { }
+  constructor(public api: OmdbApiService, public loadingController: LoadingController, public mediaType : MediaType, public router: Router) { }
 
-  async getMediaByName(searchBar) {
-    var name = searchBar.detail.value;
-    this.searchText = name;
-    
-    if(this.mediaType == MediaType.Movie){
-      await this.getMoviesByName(name);
-    }
-    else {
-      await this.getSeriesByName(name);
-    }
+  abstract async goToDetails(media : SearchMedia);
+
+  abstract async getMediaResult() : Promise<SearchResult>;
+
+  async getMedia(searchBar) {
+    this.searchText = searchBar.detail.value;
+    this.searchResult = await this.getMediaResult();
     this.currentPageNumber = 1;
-  }
-
-  async getMoviesByName(searchText) {
-    this.searchResult = await this.api.getMoviesByName(searchText, this.currentPageNumber);
-  }
-
-  async getSeriesByName(searchText) {
-    this.searchResult = await this.api.getSeriesByName(searchText, this.currentPageNumber); //Todo: Create a common searchResult between series and movies.
   }
 
   async getMoreMovies(infiniteScroll){
@@ -39,7 +30,7 @@ export class MediaTabPage {
 
     if(this.currentPageNumber * 10 < this.searchResult.totalResults){
       console.log("page=" + this.currentPageNumber + " total=" + this.searchResult.totalResults);
-      var res = await this.api.getMoviesByName(this.searchText, this.currentPageNumber);
+      var res = await this.getMediaResult();
       res.Search.forEach(element => {
         this.searchResult.Search.push(element);
       });

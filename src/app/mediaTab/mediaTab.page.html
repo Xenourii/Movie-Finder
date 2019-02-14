@@ -16,16 +16,16 @@
   
   <ion-content padding>
       <!-- Animated Searchbar -->
-      <ion-searchbar *ngIf="isSearchBarDisplayed" id="searchbar" animated placeholder="Search a movie by name" type="search" (ionChange)="getMediaByName($event)"></ion-searchbar>
-      
+      <ion-searchbar *ngIf="isSearchBarDisplayed" id="searchbar" animated placeholder="Search by name" type="search" (ionChange)="getMedia($event)"></ion-searchbar>
+
       <ion-grid fixed>
           <ion-row>
-            <ion-col size-xs="12" size-sm="6" size-md="4" *ngFor="let searchMovie of searchResult.Search">
-              <ion-card class="card-background-page">
-                <img class="card-image" src="{{searchMovie.Poster}}"/>
+            <ion-col size-xs="12" size-sm="6" size-md="4" *ngFor="let searchMedia of searchResult.Search">
+              <ion-card (click)="goToDetails(searchMedia)" class="card-background-page">
+                <img class="card-image" src="{{searchMedia.Poster}}"/>
                 <div class="card-transparent"></div>
-                <div class="card-title">{{searchMovie.Title}}</div>
-                <div class="card-subtitle">{{searchMovie.Year}}</div>
+                <div class="card-title">{{searchMedia.Title}}</div>
+                <div class="card-subtitle">{{searchMedia.Year}}</div>
               </ion-card>
             </ion-col>
           </ion-row> 
