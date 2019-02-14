@@ -1,7 +1,7 @@
-import { SearchMovie } from "./searchMovie";
+import { SearchMedia } from "./searchMedia";
 
 export interface SearchResult {
     Response: boolean;
-    Search: SearchMovie[];
+    Search: SearchMedia[];
     totalResults: number;
 }

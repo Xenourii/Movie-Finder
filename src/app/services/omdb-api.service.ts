@@ -24,7 +24,16 @@ export class OmdbApiService {
   }
 
   async getMoviesByName(name: string, page: number) : Promise<SearchResult> {
-    const url = `${omdbApiUrl}&s=${name}*&page=${page}`;
+    const url = `${omdbApiUrl}&s=${name}*&page=${page}&type=movie`;
+    return await this.getMediaInformations(url);
+  }
+
+  async getSeriesByName(name: string, page: number) : Promise<SearchResult> {
+    const url = `${omdbApiUrl}&s=${name}*&page=${page}&type=series`;
+    return await this.getMediaInformations(url);
+  }
+
+  async getMediaInformations(url: string){
     let response = await this.http.get(url);
     var searchResult = response as SearchResult;
     return searchResult;

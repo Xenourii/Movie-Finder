@@ -4,19 +4,34 @@ import { SearchResult } from './../../models/searchResult';
 import { OmdbApiService } from '../services/omdb-api.service';
 
 export class MediaTabPage {
-  private searchText: string;
-
   searchResult: SearchResult;
   
   currentPageNumber: number;
   isSearchBarDisplayed: boolean = true;
 
+  searchText: string;
+
   constructor(public api: OmdbApiService, public loadingController: LoadingController, public mediaType : MediaType) { }
 
-  async getMoviesByName(searchBarEvent) {
-    this.searchText = searchBarEvent.detail.value;
+  async getMediaByName(searchBar) {
+    var name = searchBar.detail.value;
+    this.searchText = name;
+    
+    if(this.mediaType == MediaType.Movie){
+      await this.getMoviesByName(name);
+    }
+    else {
+      await this.getSeriesByName(name);
+    }
     this.currentPageNumber = 1;
-    this.searchResult = await this.api.getMoviesByName(this.searchText, this.currentPageNumber);
+  }
+
+  async getMoviesByName(searchText) {
+    this.searchResult = await this.api.getMoviesByName(searchText, this.currentPageNumber);
+  }
+
+  async getSeriesByName(searchText) {
+    this.searchResult = await this.api.getSeriesByName(searchText, this.currentPageNumber); //Todo: Create a common searchResult between series and movies.
   }
 
   async getMoreMovies(infiniteScroll){

@@ -1,4 +1,4 @@
-export interface SearchMovie {
+export interface SearchMedia {
     Title: string;
     Poster: string;
     Type: string;
