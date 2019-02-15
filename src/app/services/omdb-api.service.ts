@@ -4,8 +4,6 @@ import { SearchResult } from './../../models/searchResult';
 
 import { forkJoin } from 'rxjs';import { Observable, of, throwError } from 'rxjs';
 
-//https://www.djamware.com/post/5b94bb1d80aca74669894415/ionic-4-angular-6-tutorial-call-multiple-services-at-once
-
 const omdbApiUrl: string = "http://www.omdbapi.com/?apikey=75522b56";
 const omdbImageApiUrl: string = "http://img.omdbapi.com/?apikey=75522b56";
 
@@ -17,25 +15,26 @@ export class OmdbApiService {
 
   constructor(private http: HttpClientProviderService) { }
 
-  async getMovieByName(name: string) {
-    const url = `${omdbApiUrl}&t=${name}`;
-    let response = await this.http.get(url);
-    return response;
-  }
-
   async getMoviesByName(name: string, page: number) : Promise<SearchResult> {
     const url = `${omdbApiUrl}&s=${name}*&page=${page}&type=movie`;
-    return await this.getMediaInformations(url);
+    return await this.fetch<SearchResult>(url);
   }
 
   async getSeriesByName(name: string, page: number) : Promise<SearchResult> {
     const url = `${omdbApiUrl}&s=${name}*&page=${page}&type=series`;
-    return await this.getMediaInformations(url);
+    return await this.fetch<SearchResult>(url);
   }
 
-  async getMediaInformations(url: string){
-    let response = await this.http.get(url);
-    var searchResult = response as SearchResult;
-    return searchResult;
+  getImageUrl(id: string) : string {
+    return `${omdbImageApiUrl}&i=${id}&h=1080`;
+  }
+
+  async getMediaInfo<T>(id: string) : Promise<T> {
+    const url = `${omdbApiUrl}&i=${id}&plot=full`;
+    return await this.fetch<T>(url);
+  }
+
+  async fetch<T>(url: string) : Promise<T> {
+    return await this.http.get(url) as T;
   }
 }

@@ -1,10 +1,8 @@
 import { SearchResult } from './../../../models/searchResult';
 import { SearchMedia } from './../../../models/searchMedia';
-import { LoadingController } from '@ionic/angular';
 import { OmdbApiService } from './../../services/omdb-api.service';
 import { Component } from '@angular/core';
 import { MediaTabPage } from './../mediaTab.page';
-import { MediaType } from 'src/models/media-type.enum';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,8 +12,8 @@ import { Router } from '@angular/router';
 })
 
 export class MovieTabPage extends MediaTabPage {
-  constructor(public api: OmdbApiService, public loadingController: LoadingController, public router: Router){
-      super(api, loadingController, MediaType.Movie, router);
+  constructor(public api: OmdbApiService, public router: Router){
+      super();
   }
 
   async goToDetails(media : SearchMedia){

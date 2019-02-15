@@ -9,4 +9,20 @@
 
 <ion-content padding>
 
+    <ion-text color="secondary">
+        <h1>{{movie.Title}}</h1>
+        <h3>{{movie.Year}}</h3>
+        <p>{{movie.Plot}}</p>
+        ImdbRating: {{movie.imdbRating}}
+        ImdbVotes: {{movie.imdbVotes}}
+        Website: {{movie.Website}}
+        Genre: {{movie.Genre}}
+        Runtime: {{movie.Runtime}}
+        Producer: {{movie.Production}}
+        Actors: {{movie.Actors}}
+        Awards: {{movie.Awards}}
+    </ion-text>
+
+    <ion-img [src]="imageUrl"></ion-img>
+
 </ion-content>
