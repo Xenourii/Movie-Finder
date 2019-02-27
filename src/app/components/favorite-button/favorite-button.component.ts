@@ -8,6 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class FavoriteButtonComponent implements OnInit {
 
   @Input('isFavorite') isFavorite: boolean;
+  @Output() isFavoriteChanged = new EventEmitter<boolean>();
 
   buttonColor: string = "light";
   buttonText: string;
@@ -22,6 +23,7 @@ export class FavoriteButtonComponent implements OnInit {
   onButtonClick(){
     this.isFavorite = !this.isFavorite;
     this.updateButtonState();
+    this.emit();
   }
 
   private updateButtonState(){
@@ -33,6 +35,10 @@ export class FavoriteButtonComponent implements OnInit {
       this.buttonText = "Add to favorites";
       this.starState = "star-outline";
     }
+  }
+
+  emit() {
+    this.isFavoriteChanged.emit(this.isFavorite);
   }
 
 }
