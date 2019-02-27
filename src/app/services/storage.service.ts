@@ -59,7 +59,7 @@ export class StorageService {
 
   private async getItem<T>(key: string) : Promise<T> {
     var storage = await this.getStorage();
-    return await storage.getItem(key);
+    return await storage.getItem(key) as T;
   }
 
   private async contains(key: string) : Promise<Boolean> {
