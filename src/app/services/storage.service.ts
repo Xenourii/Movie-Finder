@@ -10,9 +10,9 @@ export class StorageService {
   constructor(private storage: Storage) { }
 
   async get<T>(key: string){
-    if(!this.contains){
-      var obj: T;
-      return obj;
+    if (await this.contains(key) === false){
+      return null;
+      //return <T> {};
     }
     return await this.getItem<T>(key);
   }
@@ -20,7 +20,7 @@ export class StorageService {
   async add<T>(key: string, item: T) {
     var items: T[];
 
-    if(this.contains(key)){
+    if (await this.contains(key) === true){
       items = await this.getItem<T[]>(key);
       if (!items.includes(item)){
         items.push(item);      
@@ -33,7 +33,7 @@ export class StorageService {
   }
 
   async remove<T>(key: string, item: T){
-    if(!this.contains(key)) return;
+    if (await this.contains(key) === false) return;
     
     var items = await this.getItem<T[]>(key);
     items = items.remove(item);
@@ -41,7 +41,7 @@ export class StorageService {
   }
 
   async removeAll(key: string){
-    if(!this.contains(key)) return;
+    if (await this.contains(key) === false) return;
     
     var storage = await this.getStorage();
     await storage.removeItem(key);

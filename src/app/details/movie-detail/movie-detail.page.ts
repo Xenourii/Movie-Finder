@@ -16,18 +16,44 @@ export class MovieDetailPage implements OnInit {
   imageUrl: string;
   isFavorite: boolean;
 
+  private bookemarkedMedia: BookmarkedMedia;
+
   constructor(public api: OmdbApiService, private route: ActivatedRoute, private bookmarkService: BookmarkService) { }
 
   async ngOnInit() {
+  }
+
+  async ionViewWillEnter(){
     var id = this.route.snapshot.paramMap.get('id');
     this.movie = await this.api.getMediaInfo<Movie>(id);
     this.imageUrl = this.api.getImageUrl(id);
 
-    this.isFavorite = true; // TODO read favorite from storage
+    this.bookemarkedMedia = <BookmarkedMedia> {
+      Title: this.movie.Title,
+      imdbID: this.movie.imdbID,
+      Type: this.movie.Type,
+    };
+
+    this.isFavorite = await this.bookmarkService.isMediaAlreadyBookmarkedByImdbId(this.movie.imdbID);
   }
 
-  async onFavoriteButtonClicked(isFavorite: boolean){
-    console.log("isFavorite event=" + isFavorite);
+  async onFavoriteButtonClicked(){
+    this.isFavorite = !this.isFavorite;
+
+    if (this.isFavorite == false){
+      await this.saveMovieToBookmark();
+    }
+    else {
+      //this.removeFromBookmark(); //TODO debug Save before remove that comment
+    }
+  }
+
+  async saveMovieToBookmark(){
+    await this.bookmarkService.saveToBookmark(this.bookemarkedMedia);
+  }
+
+  async removeFromBookmark(){
+    await this.bookmarkService.removeFromBookmark(this.bookemarkedMedia);
   }
 
 }

@@ -9,7 +9,7 @@
 
 <ion-content padding>
 
-    <app-favorite-button isFavorite="{{isFavorite}}" (isFavoriteChanged)="onFavoriteButtonClicked($event)"></app-favorite-button>
+    <app-favorite-button isFavorite="{{isFavorite}}" (click)="onFavoriteButtonClicked()"></app-favorite-button>
     <ion-text color="secondary">
         <h1>{{movie.Title}}</h1>
         <h3>{{movie.Year}}</h3>

@@ -12,6 +12,22 @@ export class BookmarkService {
 
   constructor(private storage: StorageService) { }
 
+  async isMediaAlreadyBookmarkedByImdbId(imdbId: string) : Promise<boolean> {
+    try {
+      var bookmarkedMedias = await this.storage.get<BookmarkedMedia[]>(bookmarkedMediaKey);
+      if (bookmarkedMedias === null) return false;
+
+      for (let elem in bookmarkedMedias) {  
+        if (bookmarkedMedias[elem].imdbID == imdbId){
+          return true;
+        }
+      }
+      return false;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async isMediaAlreadyBookmarked(media: BookmarkedMedia) : Promise<boolean> {
     try {
       var bookmarkedMedias = await this.storage.get<BookmarkedMedia[]>(bookmarkedMediaKey);
@@ -29,7 +45,7 @@ export class BookmarkService {
     }
   }
 
-  async removeFromBookmarck(media: BookmarkedMedia) {
+  async removeFromBookmark(media: BookmarkedMedia) {
     try {
       await this.storage.remove<BookmarkedMedia>(bookmarkedMediaKey, media);
     } catch (error) {

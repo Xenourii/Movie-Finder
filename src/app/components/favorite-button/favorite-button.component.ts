@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-favorite-button',
   templateUrl: './favorite-button.component.html',
   styleUrls: ['./favorite-button.component.scss']
 })
-export class FavoriteButtonComponent implements OnInit {
+export class FavoriteButtonComponent {
 
   @Input('isFavorite') isFavorite: boolean;
   @Output() isFavoriteChanged = new EventEmitter<boolean>();
@@ -16,18 +16,15 @@ export class FavoriteButtonComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-    this.updateButtonState();
-  }
+  ngOnChanges(changes: SimpleChanges) { 
+    let chng = changes['isFavorite'];
+    this.isFavorite = JSON.parse(chng.currentValue);
 
-  onButtonClick(){
-    this.isFavorite = !this.isFavorite;
     this.updateButtonState();
-    this.emit();
   }
 
   private updateButtonState(){
-    if (this.isFavorite === true){
+    if (this.isFavorite == true){
       this.buttonText = "Bookmarked";
       this.starState = "star";
     }
@@ -35,10 +32,6 @@ export class FavoriteButtonComponent implements OnInit {
       this.buttonText = "Add to favorites";
       this.starState = "star-outline";
     }
-  }
-
-  emit() {
-    this.isFavoriteChanged.emit(this.isFavorite);
   }
 
 }
