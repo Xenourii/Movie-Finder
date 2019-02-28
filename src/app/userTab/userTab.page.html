@@ -9,7 +9,7 @@
 <ion-content>
   <h1>Favorite</h1>
 
-<ion-list>
+  <ion-list>
     <ion-item-sliding *ngFor="let media of medias">
       <ion-item (click)="onBookmarkedMediaClick(media)">
         <ion-label>{{media.Title}}</ion-label>
@@ -23,4 +23,7 @@
     </ion-item-sliding>
   </ion-list>
 
+  <h2>Import & Export</h2>
+  <ion-button (click)="onImportClicked()">Import</ion-button>
+  <ion-button (click)="onExportClicked()">Export</ion-button>
 </ion-content>
