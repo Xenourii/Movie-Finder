@@ -34,17 +34,17 @@ export class MovieDetailPage implements OnInit {
       Type: this.movie.Type,
     };
 
-    this.isFavorite = await this.bookmarkService.isMediaAlreadyBookmarkedByImdbId(this.movie.imdbID);
+    this.isFavorite = await this.bookmarkService.isMediaAlreadyBookmarked(this.bookemarkedMedia);
   }
 
   async onFavoriteButtonClicked(){
     this.isFavorite = !this.isFavorite;
 
-    if (this.isFavorite == false){
+    if (this.isFavorite == true){
       await this.saveMovieToBookmark();
     }
     else {
-      //this.removeFromBookmark(); //TODO debug Save before remove that comment
+      this.removeFromBookmark();
     }
   }
 

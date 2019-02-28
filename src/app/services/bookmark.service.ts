@@ -10,36 +10,19 @@ const bookmarkedMediaKey: string = "bookmarkedMediaKey";
 
 export class BookmarkService {
 
-  constructor(private storage: StorageService) { }
-
-  async isMediaAlreadyBookmarkedByImdbId(imdbId: string) : Promise<boolean> {
-    try {
-      var bookmarkedMedias = await this.storage.get<BookmarkedMedia[]>(bookmarkedMediaKey);
-      if (bookmarkedMedias === null) return false;
-
-      for (let elem in bookmarkedMedias) {  
-        if (bookmarkedMedias[elem].imdbID == imdbId){
-          return true;
-        }
-      }
-      return false;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async isMediaAlreadyBookmarked(media: BookmarkedMedia) : Promise<boolean> {
-    try {
-      var bookmarkedMedias = await this.storage.get<BookmarkedMedia[]>(bookmarkedMediaKey);
-      return bookmarkedMedias.includes(media);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  constructor(private storage: StorageService) { }  
 
   async saveToBookmark(media: BookmarkedMedia) {
     try {
-      this.storage.add<BookmarkedMedia>(bookmarkedMediaKey, media);
+      var bookmarkedMedias = await this.getBookmarkedMedias();
+      if (bookmarkedMedias != null && !this.isMediaIncluedIn(media, bookmarkedMedias)) {
+        bookmarkedMedias.push(media);
+      }
+      else {
+        bookmarkedMedias = [media];
+      }
+
+      await this.storage.set(bookmarkedMediaKey, bookmarkedMedias);
     } catch (error) {
       console.log(error);
     }
@@ -47,7 +30,15 @@ export class BookmarkService {
 
   async removeFromBookmark(media: BookmarkedMedia) {
     try {
-      await this.storage.remove<BookmarkedMedia>(bookmarkedMediaKey, media);
+      var bookmarkedMedias = await this.getBookmarkedMedias();
+      if (bookmarkedMedias === null){
+        console.log("Tsry to remove bookmarked media" + media.Title + ", but no one is stored.");
+        return;
+      };
+
+      bookmarkedMedias = bookmarkedMedias.filter(e => e.imdbID != media.imdbID);
+      await this.storage.set(bookmarkedMediaKey, bookmarkedMedias);
+
     } catch (error) {
       console.log(error);
     }
@@ -55,9 +46,29 @@ export class BookmarkService {
 
   async getBookmarkedMedias() : Promise<BookmarkedMedia[]>{
     try {
-      return this.storage.get<BookmarkedMedia[]>(bookmarkedMediaKey);
+      return await this.storage.get<BookmarkedMedia[]>(bookmarkedMediaKey);
     } catch (error) {
       console.log("Bookmark error =" + error);
     }
+  }
+
+  async isMediaAlreadyBookmarked(media: BookmarkedMedia) : Promise<boolean> {
+    try {
+      var bookmarkedMedias = await this.storage.get<BookmarkedMedia[]>(bookmarkedMediaKey);
+      console.log(bookmarkedMedias);
+      console.log(this.isMediaIncluedIn(media, bookmarkedMedias));
+      return this.isMediaIncluedIn(media, bookmarkedMedias);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  private isMediaIncluedIn(media: BookmarkedMedia, medias: BookmarkedMedia[]) : boolean {
+    for (let i in medias) {
+      if (medias[i].imdbID == media.imdbID) {
+        return true;
+      }
+    }
+    return false;
   }
 }

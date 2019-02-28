@@ -9,38 +9,20 @@ export class StorageService {
 
   constructor(private storage: Storage) { }
 
-  async get<T>(key: string){
-    if (await this.contains(key) === false){
+  async get<T>(key: string) : Promise<T> {
+    if (await this.contains(key) === false) {
       return null;
-      //return <T> {};
     }
-    return await this.getItem<T>(key);
+    var storage = await this.getStorage();
+    return await storage.getItem(key) as T;
   }
 
-  async add<T>(key: string, item: T) {
-    var items: T[];
-
-    if (await this.contains(key) === true){
-      items = await this.getItem<T[]>(key);
-      if (!items.includes(item)){
-        items.push(item);      
-      }
-    }
-    else {
-      items = [item];
-    }
-    await this.set(key, items);
+  async set<T>(key: string, items: T){
+    var storage = await this.getStorage();
+    await storage.setItem(key, items);
   }
 
-  async remove<T>(key: string, item: T){
-    if (await this.contains(key) === false) return;
-    
-    var items = await this.getItem<T[]>(key);
-    items = items.remove(item);
-    await this.set(key, items);
-  }
-
-  async removeAll(key: string){
+  async remove(key: string){
     if (await this.contains(key) === false) return;
     
     var storage = await this.getStorage();
@@ -50,16 +32,6 @@ export class StorageService {
   async clear(){
     var storage = await this.getStorage();
     await storage.clear();
-  }
-
-  private async set<T>(key: string, items: T){
-    var storage = await this.getStorage();
-    await storage.setItem(key, items);
-  }
-
-  private async getItem<T>(key: string) : Promise<T> {
-    var storage = await this.getStorage();
-    return await storage.getItem(key) as T;
   }
 
   private async contains(key: string) : Promise<Boolean> {
