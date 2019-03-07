@@ -23,7 +23,7 @@
     </ion-item-sliding>
   </ion-list>
 
-  <h2>Import & Export</h2>
+  <h2>Import & Export Favorites</h2>
 
   <ion-item>
     <input #uploader type="file" (change)="onImportClicked($event)" hidden=true />
@@ -33,5 +33,9 @@
     </ion-button>
   </ion-item>
 
-  <ion-button (click)="onExportClicked()">Export</ion-button>
+  <ion-button full icon-left (click)="onExportClicked()">
+    <ion-icon name="download"></ion-icon>
+    Export
+  </ion-button>
+
 </ion-content>

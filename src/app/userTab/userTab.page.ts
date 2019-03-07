@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { BookmarkedMedia } from './../../models/bookmarkedMedia';
 import { BookmarkService } from './../services/bookmark.service';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { Component } from '@angular/core';
 import * as papa from 'papaparse';
 @Component({
@@ -13,7 +14,7 @@ export class UserTabPage {
   medias: BookmarkedMedia[];
   file: File;
 
-  constructor(private bookmarkService: BookmarkService, private router: Router) {}
+  constructor(private bookmarkService: BookmarkService, private router: Router, private socialSharing: SocialSharing) {}
 
   async ionViewWillEnter(){
     this.medias = await this.bookmarkService.getBookmarkedMedias();
@@ -58,12 +59,14 @@ export class UserTabPage {
   }
 
   async onExportClicked(){
-
+    var medias = await this.bookmarkService.getBookmarkedMedias();
+    var json = JSON.stringify(medias);
+    this.socialSharing.share("Favorite media in Json", "Exported favorites as json", json);
   }
 
   async importJson(data: string){
     var medias = JSON.parse(data) as BookmarkedMedia[];
-    await this.addToBookMarck(medias); 
+    await this.addToBookMarck(medias);
   }
 
   async importXml(data: string){
