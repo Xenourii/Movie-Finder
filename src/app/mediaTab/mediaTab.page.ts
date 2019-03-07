@@ -7,7 +7,7 @@ export abstract class MediaTabPage {
   currentPageNumber: number;
   isSearchBarDisplayed: boolean = true;
 
-  searchText: string;
+  searchText: string = "";
 
   abstract async goToDetails(media : SearchMedia);
 

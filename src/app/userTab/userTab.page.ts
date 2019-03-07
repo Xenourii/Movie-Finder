@@ -62,6 +62,8 @@ export class UserTabPage {
       else {
         console.log("unkown format");
       }
+      
+      this.medias = await this.bookmarkService.getBookmarkedMedias();
     } catch (error) {
       console.log(error);
     }
@@ -86,11 +88,10 @@ export class UserTabPage {
 
   async importCsv(data: string){
     var medias = papa.parse(data, {header:true}).data;
-    console.log(medias);
     await this.addToBookMarck(medias);
   }
 
-  async addToBookMarck(medias: BookmarkedMedia[]){
+  async addToBookMarck(medias: BookmarkedMedia[]) {
     for (var i in medias) {
       var media = medias[i];
       if (await this.bookmarkService.isMediaAlreadyBookmarked(media) === false){
