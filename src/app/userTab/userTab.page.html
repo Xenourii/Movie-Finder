@@ -33,9 +33,14 @@
     </ion-button>
   </ion-item>
 
-  <ion-button full icon-left (click)="onExportClicked()">
+  <ion-button full icon-left (click)="onExportJsonClicked()">
     <ion-icon name="download"></ion-icon>
-    Export
+    Export JSON
+  </ion-button>
+
+  <ion-button full icon-left (click)="onExportCsvClicked()">
+    <ion-icon name="download"></ion-icon>
+    Export CSV
   </ion-button>
 
 </ion-content>

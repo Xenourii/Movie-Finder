@@ -58,12 +58,18 @@ export class UserTabPage {
     }  
   }
 
-  async onExportClicked(){
+  async onExportJsonClicked(){
     var medias = await this.bookmarkService.getBookmarkedMedias();
     var json = JSON.stringify(medias);
-    this.socialSharing.share("Favorite media in Json", "Exported favorites as json", json);
+    this.socialSharing.share("Exported favorite media", "Get your medias as Json", json);
   }
 
+  async onExportCsvClicked(){
+    var medias = await this.bookmarkService.getBookmarkedMedias();
+    var csv = papa.unparse(medias);
+    this.socialSharing.share("Exported favorite media", "Get your medias as CSV", csv);
+  }
+ 
   async importJson(data: string){
     var medias = JSON.parse(data) as BookmarkedMedia[];
     await this.addToBookMarck(medias);
