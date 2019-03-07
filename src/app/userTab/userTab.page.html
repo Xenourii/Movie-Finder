@@ -26,7 +26,7 @@
   <h2>Import & Export Favorites</h2>
 
   <ion-item>
-    <input #uploader type="file" (change)="onImportClicked($event)" hidden=true />
+    <input #uploader type="file" (change)="onImportClicked($event)" hidden="true" />
     <ion-button (click)="uploader.click()" full icon-left>
       <ion-icon name="document"></ion-icon>
       Import
@@ -42,5 +42,22 @@
     <ion-icon name="download"></ion-icon>
     Export CSV
   </ion-button>
+
+  <ion-item>
+    <a #exportJsonBrowserLink id="exportJsonButton" (click)="setHrefExportJsonBrowser()" hidden="true" download="favorites.json"></a>
+    <ion-button (click)="exportJsonBrowserLink.click()" full icon-left>
+      <ion-icon name="download"></ion-icon>
+      Export json browser
+    </ion-button>
+  </ion-item>
+
+
+  <ion-item>
+    <a #exportCsvBrowserLink id="exportCsvButton" (click)="setHrefExportCsvBrowser()" hidden="true" download="favorites.csv"></a>
+    <ion-button (click)="exportCsvBrowserLink.click()" full icon-left>
+      <ion-icon name="download"></ion-icon>
+      Export csv browser
+    </ion-button>
+  </ion-item>
 
 </ion-content>
