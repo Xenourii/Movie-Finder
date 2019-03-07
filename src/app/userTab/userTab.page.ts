@@ -38,8 +38,6 @@ export class UserTabPage {
   }
 
   async onBookmarkedMediaRemove(media){
-    // fix(item-sliding): Sliding no longer breaks after removing an item
-    // https://github.com/ionic-team/ionic/pull/17492/files
     await this.bookmarkService.removeFromBookmark(media);
     this.medias = await this.bookmarkService.getBookmarkedMedias();
   }
