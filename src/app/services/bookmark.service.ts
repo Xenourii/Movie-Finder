@@ -32,7 +32,7 @@ export class BookmarkService {
     try {
       var bookmarkedMedias = await this.getBookmarkedMedias();
       if (bookmarkedMedias === null){
-        console.log("Tsry to remove bookmarked media" + media.Title + ", but no one is stored.");
+        console.log("Try to remove bookmarked media" + media.Title + ", but no one is stored.");
         return;
       };
 

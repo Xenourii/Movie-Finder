@@ -24,6 +24,14 @@
   </ion-list>
 
   <h2>Import & Export</h2>
-  <ion-button (click)="onImportClicked()">Import</ion-button>
+
+  <ion-item>
+    <input #uploader type="file" (change)="onImportClicked($event)" hidden=true />
+    <ion-button (click)="uploader.click()" full icon-left>
+      <ion-icon name="document"></ion-icon>
+      Import
+    </ion-button>
+  </ion-item>
+
   <ion-button (click)="onExportClicked()">Export</ion-button>
 </ion-content>
