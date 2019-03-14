@@ -26,7 +26,7 @@ export class OmdbApiService {
   }
 
   getImageUrl(id: string) : string {
-    return `${omdbImageApiUrl}&i=${id}&h=1080`;
+    return `${omdbImageApiUrl}&i=${id}&h=9999`;
   }
 
   async getMediaInfo<T>(id: string) : Promise<T> {

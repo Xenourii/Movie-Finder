@@ -10,20 +10,51 @@
 <ion-content padding>
 
     <app-favorite-button isFavorite="{{isFavorite}}" (click)="onFavoriteButtonClicked()"></app-favorite-button>
-    <ion-text color="secondary">
-        <h1>{{movie.Title}}</h1>
-        <h3>{{movie.Year}}</h3>
-        <p>{{movie.Plot}}</p>
-        ImdbRating: {{movie.imdbRating}}
-        ImdbVotes: {{movie.imdbVotes}}
-        Website: {{movie.Website}}
-        Genre: {{movie.Genre}}
-        Runtime: {{movie.Runtime}}
-        Producer: {{movie.Production}}
-        Actors: {{movie.Actors}}
-        Awards: {{movie.Awards}}
-    </ion-text>
 
-    <ion-img [src]="imageUrl"></ion-img>
+    <div class=background-image>
+        <ion-img class="image" [src]="imageUrl"></ion-img>
+
+        <div class="informations">
+            <p>{{movie.Year}}</p>
+            <ion-grid class="grid">
+              <ion-row class="title-grid">
+                  <ion-col size-xs="12" size-sm="6" size-md="4">
+                      <h1 class="title">{{movie.Title}}</h1>
+                  </ion-col>
+              </ion-row>
+        
+              <ion-row class="info-grid">
+                <ion-col>
+                  <p class="plot">{{movie.Plot}}</p>
+                </ion-col>
+                <ion-col>
+        
+                  <ion-grid>
+                    <ion-row><span class=info-label>Year:</span> {{movie.Year}}</ion-row>
+                    <ion-row><span class=info-label>Genre:</span> {{movie.Genre}}</ion-row>
+                    <ion-row> <span class="info-label">With:</span> {{movie.Actors}} </ion-row>
+                    <ion-row> <span class="info-label">Producer:</span> {{movie.Production}} </ion-row>
+                    <ion-row> <span class="info-label">Awards:</span> {{movie.Awards}} </ion-row>
+                    <a href="{{movie.Website}}">{{movie.Website}}</a>
+                  </ion-grid>
+        
+                </ion-col>
+              </ion-row>
+        
+              <ion-row>
+                <div>
+                  <ion-text color="secondary">
+                      ImdbRating: {{movie.imdbRating}}
+                      ImdbVotes: {{movie.imdbVotes}}
+                      Runtime: {{movie.Runtime}}
+                  </ion-text>
+                </div>
+              </ion-row>
+            </ion-grid>
+        </div>
+    </div>
+
+    
+
 
 </ion-content>

@@ -1,0 +1,52 @@
+h1.title {
+    color: white;
+}
+
+.image {
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+}
+
+.background-image {
+
+    position: relative;
+}
+
+.title-grid {
+    .title {
+        font-size: 2em;
+        font-weight: bold;
+        color: white;
+        text-align: left;
+    }
+}
+
+.grid {
+    color: white;
+    text-align: left;
+    padding: 0;
+}
+
+.info-grid {
+    //background: rgba(0, 0, 0, 0.6);
+    padding-top: 20px;
+
+    .plot {
+        text-align: justify;
+        margin-top: 0;
+        margin-right: 5%;
+    }
+    
+}
+
+.info-label {
+    color: #a3a3a3;
+    margin-right: 10px;
+}
+
+.informations {
+    position: absolute;
+    top: 5%;
+    background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.6) 25%, rgba(0, 0, 0, 0.6) 75%, transparent 100%);
+}
