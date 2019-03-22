@@ -22,7 +22,5 @@ export interface Media {
     imdbID?: string;
     Type?: string;
     DVD?: string;
-    Production?: string;
-    Website?: string;
     Response?: boolean;
   }

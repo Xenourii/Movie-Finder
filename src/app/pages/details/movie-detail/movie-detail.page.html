@@ -9,44 +9,41 @@
 
 <ion-content padding>
 
-    <div class=background-image>
-        <ion-img class="image" [src]="imageUrl" onError="src = http://www.citypages.com/img/movie-placeholder.gif"></ion-img>
+  <div class=background-image>
+      <ion-img class="image" [src]="imageUrl" onError="src = http://www.citypages.com/img/movie-placeholder.gif"></ion-img>
 
-        <div class="informations">
-            <ion-grid class="grid">
-              <ion-row class="title-grid">
-                  <ion-col size-xs="12" size-sm="6" size-md="4">
-                      <h1 class="title">{{movie.Title}}</h1>
-                  </ion-col>
-              </ion-row>
-        
-              <ion-row class="info-grid">
+      <div class="informations">
+          <ion-grid class="grid">
+            <ion-row class="title-grid">
                 <ion-col>
-                  <p class="plot" *ngIf="movie.Plot != 'N/A'">{{movie.Plot}}</p>
+                    <h1 class="title">{{movie?.Title}}</h1>
                 </ion-col>
-                <ion-col>
-        
-                  <ion-grid>
-                    <ion-row *ngIf="movie?.Year != 'N/A'"><span class=info-label>Year</span> {{movie.Year}}</ion-row>
-                    <ion-row *ngIf="movie?.Genre != 'N/A'"><span class=info-label>Genre</span> {{movie.Genre}}</ion-row>
-                    <ion-row *ngIf="movie?.Actors != 'N/A'"> <span class="info-label">With</span> {{movie.Actors}} </ion-row>
-                    <ion-row *ngIf="movie?.Production != 'N/A'"> <span class="info-label">Producer</span> {{movie.Production}} </ion-row>
-                    <ion-row *ngIf="movie?.Awards != 'N/A'"> <span class="info-label">Awards</span> {{movie.Awards}} </ion-row>
-                    <ion-row *ngIf="movie?.Rated != 'N/A'"> <span class="info-label">Rated</span> {{movie.Rated}}</ion-row>
-                    <ion-row *ngIf="movie?.imdbRating != 'N/A'"> <span class="info-label">Rating</span> {{movie.imdbRating}}/10 </ion-row>
-                    <ion-row *ngIf="movie?.imdbVotes != 'N/A'"> <span class="info-label">Number of votes</span> {{movie.imdbVotes}} </ion-row>
-                    <ion-row *ngIf="movie?.Runtime != 'N/A'"> <span class="info-label">Duration</span> {{movie.Runtime}} </ion-row>
-                    <ion-row *ngIf="movie?.Website != 'N/A'"> <span class="info-label">Website</span> <a href="{{movie.Website}}">{{movie.Website}}</a> </ion-row>
-                  </ion-grid>
-        
-                </ion-col>
-              </ion-row>
-              <app-favorite-button isFavorite="{{isFavorite}}" (click)="onFavoriteButtonClicked()"></app-favorite-button>
-            </ion-grid>
-        </div>
-    </div>
-
-    
-
+            </ion-row>
+      
+            <ion-row class="info-grid">
+              <ion-col size-xs="12" size-sm="12" size-md="6" size-lg="6" size-xl="6">
+                <p class="plot" *ngIf="movie?.Plot != 'N/A'">{{movie?.Plot}}</p>
+              </ion-col>
+              <ion-col>
+      
+                <ion-grid>
+                  <ion-row *ngIf="movie?.Year != 'N/A'"><span class=info-label>Year</span> {{movie?.Year}}</ion-row>
+                  <ion-row *ngIf="movie?.Genre != 'N/A'"><span class=info-label>Genre</span> {{movie?.Genre}}</ion-row>
+                  <ion-row *ngIf="movie?.Actors != 'N/A'"> <span class="info-label">With</span> {{movie?.Actors}} </ion-row>
+                  <ion-row *ngIf="movie?.Production != 'N/A'"> <span class="info-label">Producer</span> {{movie?.Production}} </ion-row>
+                  <ion-row *ngIf="movie?.Awards != 'N/A'"> <span class="info-label">Awards</span> {{movie?.Awards}} </ion-row>
+                  <ion-row *ngIf="movie?.Rated != 'N/A'"> <span class="info-label">Rated</span> {{movie?.Rated}}</ion-row>
+                  <ion-row *ngIf="movie?.imdbRating != 'N/A'"> <span class="info-label">Rating</span> {{movie?.imdbRating}}/10 </ion-row>
+                  <ion-row *ngIf="movie?.imdbVotes != 'N/A'"> <span class="info-label">Number of votes</span> {{movie?.imdbVotes}} </ion-row>
+                  <ion-row *ngIf="movie?.Runtime != 'N/A'"> <span class="info-label">Duration</span> {{movie?.Runtime}} </ion-row>
+                  <ion-row *ngIf="movie?.Website != 'N/A'"> <span class="info-label">Website</span> <a href="{{movie?.Website}}">{{movie?.Website}}</a> </ion-row>
+                </ion-grid>
+      
+              </ion-col>
+            </ion-row>
+            <app-favorite-button isFavorite="{{isFavorite}}" (click)="onFavoriteButtonClicked()"></app-favorite-button>
+          </ion-grid>
+      </div>
+  </div>
 
 </ion-content>

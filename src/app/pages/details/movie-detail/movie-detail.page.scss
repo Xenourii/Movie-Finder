@@ -29,7 +29,6 @@ h1.title {
 }
 
 .info-grid {
-    //background: rgba(0, 0, 0, 0.6);
     padding-top: 20px;
 
     .plot {
@@ -40,9 +39,10 @@ h1.title {
 }
 
 .info-label {
-    color: #a3a3a3;
+    color: #dad8d8;
     margin-right: 10px;
     font-weight: bolder;
+    text-shadow: 1px 0 0 #707070, -1px 0 0 #707070, 0 1px 0 #707070, 0 -1px 0 #707070, 0.5px 0.5px #707070, -0.5px -0.5px 0 #707070, 0.5px -0.5px 0 #707070, -0.5px 0.5px 0 #707070;
 }
 
 .informations {

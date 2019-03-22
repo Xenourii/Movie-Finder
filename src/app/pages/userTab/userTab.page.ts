@@ -38,7 +38,7 @@ export class UserTabPage {
     if (media.Type == "movie"){
       await this.router.navigate(['/movie-detail/' + media.imdbID]);
     }
-    else if (media.Type == "serie"){
+    else if (media.Type == "series"){
       await this.router.navigate(['/serie-detail/' + media.imdbID]);
     }
     else {

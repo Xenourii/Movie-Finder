@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core';
+import { ComponentsModule } from './../../../components/components.module';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
@@ -19,8 +20,10 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    ComponentsModule,
     RouterModule.forChild(routes)
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   declarations: [SerieDetailPage]
 })
 export class SerieDetailPageModule {}
