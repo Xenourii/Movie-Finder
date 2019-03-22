@@ -1,6 +1,6 @@
-import { SearchResult } from './../../../models/searchResult';
-import { SearchMedia } from './../../../models/searchMedia';
-import { OmdbApiService } from './../../services/omdb-api.service';
+import { SearchResult } from './../../../../models/searchResult';
+import { SearchMedia } from './../../../../models/searchMedia';
+import { OmdbApiService } from './../../../services/omdb-api.service';
 import { Component } from '@angular/core';
 import { MediaTabPage } from './../mediaTab.page';
 import { Router } from '@angular/router';

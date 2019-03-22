@@ -1,5 +1,5 @@
-import { SearchMedia } from './../../models/searchMedia';
-import { SearchResult } from './../../models/searchResult';
+import { SearchMedia } from './../../../models/searchMedia';
+import { SearchResult } from './../../../models/searchResult';
 
 export abstract class MediaTabPage {
   searchResult: SearchResult;

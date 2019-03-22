@@ -1,7 +1,7 @@
-import { SearchResult } from './../../models/searchResult';
+import { SearchResult } from './../../../models/searchResult';
 import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
-import { OmdbApiService } from '../services/omdb-api.service';
+import { OmdbApiService } from '../../services/omdb-api.service';
 
 @Component({
   selector: 'app-home',
@@ -28,8 +28,7 @@ export class HomePage implements OnInit{
   async getMoreMovies(infiniteScroll){
     this.currentPageNumber++;
 
-    if(this.currentPageNumber * 10 < this.searchResult.totalResults){
-      console.log("page=" + this.currentPageNumber + " total=" + this.searchResult.totalResults);
+    if (this.currentPageNumber * 10 < this.searchResult.totalResults){
       var res = await this.api.getMoviesByName(this.searchText, this.currentPageNumber);
       res.Search.forEach(element => {
         this.searchResult.Search.push(element);
@@ -38,7 +37,6 @@ export class HomePage implements OnInit{
     };
       console.log('Async operation has ended');
         infiniteScroll.target.complete();
-        console.log("complete");  
   }
 
   toggleSearchBar(){

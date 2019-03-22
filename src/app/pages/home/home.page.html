@@ -22,10 +22,16 @@
         <ion-row>
           <ion-col size-xs="12" size-sm="6" size-md="4" *ngFor="let searchMovie of searchResult.Search">
             <ion-card class="card-background-page">
-              <img class="card-image" src="{{searchMovie.Poster}}"/>
-              <div class="card-transparent"></div>
-              <div class="card-title">{{searchMovie.Title}}</div>
-              <div class="card-subtitle">{{searchMovie.Year}}</div>
+              <ion-card-subtitle>
+                <div class="card-subtitle">{{searchMovie.Year}}</div>
+              </ion-card-subtitle>
+              <ion-card-title>
+                <div class="card-title">{{searchMovie.Title}}</div>
+              </ion-card-title>
+              <ion-card-content>
+                <img class="card-image" src="{{searchMovie.Poster}}"/>
+                <div class="card-transparent"></div>
+              </ion-card-content>
             </ion-card>
           </ion-col>
         </ion-row> 

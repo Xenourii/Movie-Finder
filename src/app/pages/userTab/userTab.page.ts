@@ -1,9 +1,9 @@
-import { FileService } from './../services/file.service';
+import { FileService } from './../../services/file.service';
 import { Platform } from '@ionic/angular';
 import { element } from 'protractor';
 import { Router } from '@angular/router';
-import { BookmarkedMedia } from './../../models/bookmarkedMedia';
-import { BookmarkService } from './../services/bookmark.service';
+import { BookmarkedMedia } from './../../../models/bookmarkedMedia';
+import { BookmarkService } from './../../services/bookmark.service';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { Component } from '@angular/core';
 import * as papa from 'papaparse';

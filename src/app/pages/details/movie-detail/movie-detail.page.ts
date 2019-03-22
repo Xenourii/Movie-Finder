@@ -1,6 +1,6 @@
-import { BookmarkedMedia } from './../../../models/bookmarkedMedia';
-import { BookmarkService } from './../../services/bookmark.service';
-import { Movie } from './../../../models/movie';
+import { BookmarkedMedia } from './../../../../models/bookmarkedMedia';
+import { BookmarkService } from './../../../services/bookmark.service';
+import { Movie } from './../../../../models/movie';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OmdbApiService } from 'src/app/services/omdb-api.service';

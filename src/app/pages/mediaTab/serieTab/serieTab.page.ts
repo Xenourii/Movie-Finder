@@ -1,9 +1,9 @@
-import { SearchResult } from './../../../models/searchResult';
+import { SearchResult } from './../../../../models/searchResult';
 import { Component } from '@angular/core';
 import { MediaTabPage } from './../mediaTab.page';
 import { OmdbApiService } from 'src/app/services/omdb-api.service';
 import { Router } from '@angular/router';
-import { SearchMedia } from './../../../models/searchMedia';
+import { SearchMedia } from './../../../../models/searchMedia';
 
 @Component({
   selector: 'app-mediaTab',
