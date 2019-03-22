@@ -1,3 +1,4 @@
+import { FileService } from './../services/file.service';
 import { Platform } from '@ionic/angular';
 import { element } from 'protractor';
 import { Router } from '@angular/router';
@@ -18,7 +19,11 @@ export class UserTabPage {
   file: File;
   isCordova: boolean;
 
-  constructor(private bookmarkService: BookmarkService, private router: Router, private socialSharing: SocialSharing, private platform: Platform) {}
+  constructor(private bookmarkService: BookmarkService,
+    private router: Router,
+    private socialSharing: SocialSharing,
+    private platform: Platform,
+    private fileService: FileService) {}
 
   async ionViewWillEnter(){
     this.medias = await this.bookmarkService.getBookmarkedMedias();
@@ -74,13 +79,15 @@ export class UserTabPage {
   async onExportJsonClicked(){
     var medias = await this.bookmarkService.getBookmarkedMedias();
     var json = JSON.stringify(medias);
-    this.socialSharing.share("Exported favorite media", "Get your medias as Json", json);
+    var filePath = await this.fileService.createFile('json', json);
+    this.socialSharing.share("Exported favorite media", "Get your medias as Json", filePath);
   }
 
   async onExportCsvClicked(){
     var medias = await this.bookmarkService.getBookmarkedMedias();
     var csv = papa.unparse(medias);
-    this.socialSharing.share("Exported favorite media", "Get your medias as CSV", csv);
+    var filePath = await this.fileService.createFile('csv', csv);
+    this.socialSharing.share("Exported favorite media", "Get your medias as CSV", filePath);
   }
  
   async importJson(data: string){
