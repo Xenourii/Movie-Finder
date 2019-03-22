@@ -26,7 +26,7 @@ export class MovieDetailPage implements OnInit {
   async ionViewWillEnter(){
     var id = this.route.snapshot.paramMap.get('id');
     this.movie = await this.api.getMediaInfo<Movie>(id);
-    this.imageUrl = this.api.getImageUrl(id);
+    this.imageUrl = await this.api.getImageUrl(id);
 
     this.bookemarkedMedia = <BookmarkedMedia> {
       Title: this.movie.Title,
@@ -55,5 +55,4 @@ export class MovieDetailPage implements OnInit {
   async removeFromBookmark(){
     await this.bookmarkService.removeFromBookmark(this.bookemarkedMedia);
   }
-
 }

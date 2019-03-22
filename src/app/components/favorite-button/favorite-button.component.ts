@@ -33,5 +33,4 @@ export class FavoriteButtonComponent {
       this.starState = "star-outline";
     }
   }
-
 }

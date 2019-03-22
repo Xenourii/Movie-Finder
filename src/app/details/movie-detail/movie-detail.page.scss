@@ -4,8 +4,7 @@ h1.title {
 
 .image {
     background-size: cover;
-    background-repeat: no-repeat;
-    
+    background-repeat: no-repeat; 
 }
 
 .background-image {
@@ -19,6 +18,7 @@ h1.title {
         font-weight: bold;
         color: white;
         text-align: left;
+        text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
     }
 }
 
@@ -36,17 +36,18 @@ h1.title {
         text-align: justify;
         margin-top: 0;
         margin-right: 5%;
-    }
-    
+    }    
 }
 
 .info-label {
     color: #a3a3a3;
     margin-right: 10px;
+    font-weight: bolder;
 }
 
 .informations {
     position: absolute;
-    top: 5%;
+    top: 0%;
+    padding-bottom: 100px;
     background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.6) 25%, rgba(0, 0, 0, 0.6) 75%, transparent 100%);
 }

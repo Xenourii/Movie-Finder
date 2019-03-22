@@ -25,8 +25,14 @@ export class OmdbApiService {
     return await this.fetch<SearchResult>(url);
   }
 
-  getImageUrl(id: string) : string {
-    return `${omdbImageApiUrl}&i=${id}&h=9999`;
+  async getImageUrl(id: string) : Promise<string> {
+    var imageUrl = `${omdbImageApiUrl}&i=${id}&h=9999`;
+    var isImageExists = await this.http.isExists(imageUrl);
+    if (!isImageExists){
+      imageUrl = "http://www.citypages.com/img/movie-placeholder.gif";
+    }
+
+    return imageUrl;
   }
 
   async getMediaInfo<T>(id: string) : Promise<T> {

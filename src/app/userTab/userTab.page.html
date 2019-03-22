@@ -27,9 +27,9 @@
 
   <h2>Import & Export Favorites</h2>
 
-  <ion-item>
+  <ion-item class="input-button">
     <input #uploader type="file" (change)="onImportClicked($event)" hidden="true" />
-    <ion-button (click)="uploader.click()" full icon-left>
+    <ion-button large (click)="uploader.click()" full icon-left>
       <ion-icon name="document"></ion-icon>
       Import
     </ion-button>
@@ -54,7 +54,6 @@
       Export json browser
     </ion-button>
   </ion-item>
-
 
   <ion-item [disabled]="medias?.length == 0" *ngIf="!isCordova">
     <a #exportCsvBrowserLink id="exportCsvButton" (click)="setHrefExportCsvBrowser()" hidden="true" download="favorites.csv"></a>
