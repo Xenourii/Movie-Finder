@@ -22,7 +22,7 @@ export abstract class MediaTabPage {
   async getMoreMovies(infiniteScroll){
     this.currentPageNumber++;
 
-    if(this.currentPageNumber * 10 < this.searchResult.totalResults){
+    if (this.currentPageNumber * 10 < this.searchResult.totalResults){
       console.log("page=" + this.currentPageNumber + " total=" + this.searchResult.totalResults);
       var res = await this.getMediaResult();
       res.Search.forEach(element => {
@@ -30,9 +30,8 @@ export abstract class MediaTabPage {
       });
         
     };
-      console.log('Async operation has ended');
-        infiniteScroll.target.complete();
-        console.log("complete");  
+
+      infiniteScroll.target.complete();
   }
 
   toggleSearchBar(){

@@ -9,6 +9,8 @@ ion-grid {
   }
   
   .card-background-page {
+    min-height: 200px;
+    
     .card-transparent {
       background: linear-gradient(transparent 60%, black);
       height: 100%;
