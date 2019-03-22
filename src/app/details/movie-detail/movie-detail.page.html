@@ -32,6 +32,7 @@
                     <ion-row *ngIf="movie?.Actors != 'N/A'"> <span class="info-label">With</span> {{movie.Actors}} </ion-row>
                     <ion-row *ngIf="movie?.Production != 'N/A'"> <span class="info-label">Producer</span> {{movie.Production}} </ion-row>
                     <ion-row *ngIf="movie?.Awards != 'N/A'"> <span class="info-label">Awards</span> {{movie.Awards}} </ion-row>
+                    <ion-row *ngIf="movie?.Rated != 'N/A'"> <span class="info-label">Rated</span> {{movie.Rated}}</ion-row>
                     <ion-row *ngIf="movie?.imdbRating != 'N/A'"> <span class="info-label">Rating</span> {{movie.imdbRating}}/10 </ion-row>
                     <ion-row *ngIf="movie?.imdbVotes != 'N/A'"> <span class="info-label">Number of votes</span> {{movie.imdbVotes}} </ion-row>
                     <ion-row *ngIf="movie?.Runtime != 'N/A'"> <span class="info-label">Duration</span> {{movie.Runtime}} </ion-row>
