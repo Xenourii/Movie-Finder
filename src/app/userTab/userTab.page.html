@@ -9,6 +9,8 @@
 <ion-content>
   <h1>Favorite</h1>
 
+  <ion-text *ngIf="medias?.length == 0">Empty favorites list</ion-text>
+
   <ion-list>
     <ion-item-sliding *ngFor="let media of medias">
       <ion-item (click)="onBookmarkedMediaClick(media)">
@@ -33,19 +35,19 @@
     </ion-button>
   </ion-item>
 
-  <!-- TODO: Show button according to the platform -->
+  <!-- Import & Export buttons -->
 
-  <ion-button full icon-left (click)="onExportJsonClicked()">
+  <ion-button [disabled]="medias?.length == 0" *ngIf="isCordova" full icon-left (click)="onExportJsonClicked()">
     <ion-icon name="download"></ion-icon>
     Export JSON
   </ion-button>
 
-  <ion-button full icon-left (click)="onExportCsvClicked()">
+  <ion-button [disabled]="medias?.length == 0" *ngIf="isCordova" full icon-left (click)="onExportCsvClicked()">
     <ion-icon name="download"></ion-icon>
     Export CSV
   </ion-button>
 
-  <ion-item>
+  <ion-item [disabled]="medias?.length == 0" *ngIf="!isCordova">
     <a #exportJsonBrowserLink id="exportJsonButton" (click)="setHrefExportJsonBrowser()" hidden="true" download="favorites.json"></a>
     <ion-button (click)="exportJsonBrowserLink.click()" full icon-left>
       <ion-icon name="download"></ion-icon>
@@ -54,7 +56,7 @@
   </ion-item>
 
 
-  <ion-item>
+  <ion-item [disabled]="medias?.length == 0" *ngIf="!isCordova">
     <a #exportCsvBrowserLink id="exportCsvButton" (click)="setHrefExportCsvBrowser()" hidden="true" download="favorites.csv"></a>
     <ion-button (click)="exportCsvBrowserLink.click()" full icon-left>
       <ion-icon name="download"></ion-icon>

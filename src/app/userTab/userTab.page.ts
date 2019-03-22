@@ -1,3 +1,4 @@
+import { Platform } from '@ionic/angular';
 import { element } from 'protractor';
 import { Router } from '@angular/router';
 import { BookmarkedMedia } from './../../models/bookmarkedMedia';
@@ -5,6 +6,7 @@ import { BookmarkService } from './../services/bookmark.service';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { Component } from '@angular/core';
 import * as papa from 'papaparse';
+import { platform } from 'os';
 @Component({
   selector: 'app-userTab',
   templateUrl: 'userTab.page.html',
@@ -14,14 +16,16 @@ export class UserTabPage {
 
   medias: BookmarkedMedia[];
   file: File;
+  isCordova: boolean;
 
-  constructor(private bookmarkService: BookmarkService, private router: Router, private socialSharing: SocialSharing) {}
+  constructor(private bookmarkService: BookmarkService, private router: Router, private socialSharing: SocialSharing, private platform: Platform) {}
 
   async ionViewWillEnter(){
     this.medias = await this.bookmarkService.getBookmarkedMedias();
     console.log(this.medias);
     await this.setHrefExportJsonBrowser();
     await this.setHrefExportCsvBrowser();
+    this.isCordova = this.platform.is("cordova");
   }
 
   async onBookmarkedMediaClick(media: BookmarkedMedia){
