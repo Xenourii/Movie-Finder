@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Season detail</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <h1>Season {{seasonNumber}}: {{seasonResult?.Title}}</h1>
+
+  <ion-label *ngIf="this.seasonResult?.Response == 'False'">Season not found!</ion-label>
+
+  <ion-list *ngIf="this.seasonResult?.Response == 'True'">
+      <ion-item *ngFor="let episode of seasonResult?.Episodes" (click)="onEpisodeClicked(episode)">
+          <ion-label>{{episode?.Episode}} | {{episode?.Title}}</ion-label>
+      </ion-item>
+    </ion-list>
+
+</ion-content>

@@ -1,3 +1,4 @@
+import { SeasonResult } from './../../models/seasonResult';
 import { HttpClientProviderService } from './http-client-provider.service';
 import { Injectable } from '@angular/core';
 import { SearchResult } from './../../models/searchResult';
@@ -38,6 +39,11 @@ export class OmdbApiService {
   async getMediaInfo<T>(id: string) : Promise<T> {
     const url = `${omdbApiUrl}&i=${id}&plot=full`;
     return await this.fetch<T>(url);
+  }
+
+  async getSeasonInfo(id: string, seasonNumber: string) : Promise<SeasonResult> {
+    const url = `${omdbApiUrl}&i=${id}&season=${seasonNumber}`;
+    return await this.fetch<SeasonResult>(url);
   }
 
   async fetch<T>(url: string) : Promise<T> {

@@ -44,7 +44,7 @@ export class SerieDetailPage {
     createSeasonsArray(numberOfSeasons: number){
       this.seasons = new Array();
       for (let i = 1; i <= numberOfSeasons; i++) {
-        this.seasons.push("Season " + i);
+        this.seasons.push(i.toString());
       }
     }
   
@@ -67,8 +67,8 @@ export class SerieDetailPage {
       await this.bookmarkService.removeFromBookmark(this.bookemarkedMedia);
     }
 
-    async onSeasonClicked(){
-
+    async onSeasonClicked(seasonNumber){
+      await this.router.navigate(['/season-detail/' + this.serie.imdbID + '/' + seasonNumber]);
     }
 
 }

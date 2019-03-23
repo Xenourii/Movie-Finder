@@ -1,7 +1,7 @@
 import { BookmarkedMedia } from './../../../../models/bookmarkedMedia';
 import { BookmarkService } from './../../../services/bookmark.service';
 import { Movie } from './../../../../models/movie';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OmdbApiService } from 'src/app/services/omdb-api.service';
 
@@ -10,7 +10,7 @@ import { OmdbApiService } from 'src/app/services/omdb-api.service';
   templateUrl: './movie-detail.page.html',
   styleUrls: ['./movie-detail.page.scss'],
 })
-export class MovieDetailPage implements OnInit {
+export class MovieDetailPage {
 
   movie: Movie;
   imageUrl: string;
@@ -19,9 +19,6 @@ export class MovieDetailPage implements OnInit {
   private bookemarkedMedia: BookmarkedMedia;
 
   constructor(public api: OmdbApiService, private route: ActivatedRoute, private bookmarkService: BookmarkService) { }
-
-  async ngOnInit() {
-  }
 
   async ionViewWillEnter(){
     var id = this.route.snapshot.paramMap.get('id');
