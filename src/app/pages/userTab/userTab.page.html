@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Your profile
+      Favorites
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,7 +9,7 @@
 <ion-content>
   <h1>Favorite</h1>
 
-  <ion-text *ngIf="medias?.length == 0">Empty favorites list</ion-text>
+  <ion-text *ngIf="medias == null || medias?.length == 0">Empty favorites list</ion-text>
 
   <ion-list>
     <ion-item-sliding *ngFor="let media of medias">
@@ -28,41 +28,46 @@
     </ion-item-sliding>
   </ion-list>
 
+  <ion-button *ngIf="medias?.length > 0" color="danger" (click)="onDeleteAllClicked()">
+    <ion-icon slot="start" name="trash"></ion-icon>
+    Delete all favorites
+  </ion-button>
+
   <h2>Import & Export Favorites</h2>
 
   <ion-item class="input-button">
     <input #uploader type="file" (change)="onImportClicked($event)" hidden="true" />
-    <ion-button large (click)="uploader.click()" full icon-left>
-      <ion-icon name="document"></ion-icon>
-      Import
+    <ion-button large (click)="uploader.click()">
+      <ion-icon slot="start" name="document"></ion-icon>
+      Import from JSON or CSV file
     </ion-button>
   </ion-item>
 
   <!-- Import & Export buttons -->
 
-  <ion-button [disabled]="medias?.length == 0" *ngIf="isCordova" full icon-left (click)="onExportJsonClicked()">
-    <ion-icon name="download"></ion-icon>
-    Export JSON
+  <ion-button [disabled]="medias == null || medias?.length == 0" *ngIf="isCordova" (click)="onExportJsonClicked()">
+    <ion-icon slot="start" name="download"></ion-icon>
+    Export to JSON
   </ion-button>
 
-  <ion-button [disabled]="medias?.length == 0" *ngIf="isCordova" full icon-left (click)="onExportCsvClicked()">
-    <ion-icon name="download"></ion-icon>
-    Export CSV
+  <ion-button [disabled]="medias == null || medias?.length == 0" *ngIf="isCordova" (click)="onExportCsvClicked()">
+    <ion-icon slot="start" name="download"></ion-icon>
+    Export to CSV
   </ion-button>
 
-  <ion-item [disabled]="medias?.length == 0" *ngIf="!isCordova">
+  <ion-item [disabled]="medias == null || medias?.length == 0" *ngIf="!isCordova">
     <a #exportJsonBrowserLink id="exportJsonButton" (click)="setHrefExportJsonBrowser()" hidden="true" download="favorites.json"></a>
-    <ion-button (click)="exportJsonBrowserLink.click()" full icon-left>
-      <ion-icon name="download"></ion-icon>
-      Export json browser
+    <ion-button (click)="exportJsonBrowserLink.click()">
+      <ion-icon slot="start" name="download"></ion-icon>
+      Export to JSON
     </ion-button>
   </ion-item>
 
-  <ion-item [disabled]="medias?.length == 0" *ngIf="!isCordova">
+  <ion-item [disabled]="medias == null || medias?.length == 0" *ngIf="!isCordova">
     <a #exportCsvBrowserLink id="exportCsvButton" (click)="setHrefExportCsvBrowser()" hidden="true" download="favorites.csv"></a>
-    <ion-button (click)="exportCsvBrowserLink.click()" full icon-left>
-      <ion-icon name="download"></ion-icon>
-      Export csv browser
+    <ion-button (click)="exportCsvBrowserLink.click()">
+      <ion-icon slot="start" name="download"></ion-icon>
+      Export to CSV
     </ion-button>
   </ion-item>
 

@@ -63,6 +63,10 @@ export class BookmarkService {
     }
   }
 
+  async clear() {
+    await this.storage.clear();
+  }
+
   private isMediaIncluedIn(media: BookmarkedMedia, medias: BookmarkedMedia[]) : boolean {
     for (let i in medias) {
       if (medias[i].imdbID == media.imdbID) {

@@ -1,13 +1,12 @@
 import { FileService } from './../../services/file.service';
 import { Platform } from '@ionic/angular';
-import { element } from 'protractor';
 import { Router } from '@angular/router';
 import { BookmarkedMedia } from './../../../models/bookmarkedMedia';
 import { BookmarkService } from './../../services/bookmark.service';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { Component } from '@angular/core';
 import * as papa from 'papaparse';
-import { platform } from 'os';
+
 @Component({
   selector: 'app-userTab',
   templateUrl: 'userTab.page.html',
@@ -31,6 +30,11 @@ export class UserTabPage {
     await this.setHrefExportJsonBrowser();
     await this.setHrefExportCsvBrowser();
     this.isCordova = this.platform.is("cordova");
+  }
+
+  async onDeleteAllClicked(){
+    await this.bookmarkService.clear();
+    this.medias = await this.bookmarkService.getBookmarkedMedias();
   }
 
   async onBookmarkedMediaClick(media: BookmarkedMedia){
