@@ -4,23 +4,24 @@ import { Episode } from './../../../../../models/episode';
 import { ActivatedRoute } from '@angular/router';
 import { Component } from '@angular/core';
 import { OmdbApiService } from 'src/app/services/omdb-api.service';
+import { MediaDetailPage } from '../media-detail.page';
 
 @Component({
   selector: 'app-episode-detail',
   templateUrl: './episode-detail.page.html',
   styleUrls: ['./../media-detail.page.scss'],
 })
-export class EpisodeDetailPage {
+export class EpisodeDetailPage extends MediaDetailPage {
 
   episode: Episode;
   isFavorite: boolean;
   imageUrl: string;
 
-  private bookemarkedMedia: BookmarkedMedia;
-
   constructor(public api: OmdbApiService,
     private route: ActivatedRoute,
-    private bookmarkService: BookmarkService) { }
+    bookmarkService: BookmarkService) {
+      super(bookmarkService);
+     }
 
   async ionViewWillEnter(){
     var id = this.route.snapshot.paramMap.get('id');
@@ -45,25 +46,6 @@ export class EpisodeDetailPage {
     else {
       this.imageUrl = "http://www.citypages.com/img/movie-placeholder.gif";
     }
-  }
-
-  async onFavoriteButtonClicked(){
-    this.isFavorite = !this.isFavorite;
-
-    if (this.isFavorite == true){
-      await this.saveMovieToBookmark();
-    }
-    else {
-      this.removeFromBookmark();
-    }
-  }
-
-  async saveMovieToBookmark(){
-    await this.bookmarkService.saveToBookmark(this.bookemarkedMedia);
-  }
-
-  async removeFromBookmark(){
-    await this.bookmarkService.removeFromBookmark(this.bookemarkedMedia);
   }
 
 }

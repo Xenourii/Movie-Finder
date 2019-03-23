@@ -4,21 +4,24 @@ import { Movie } from './../../../../../models/movie';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OmdbApiService } from 'src/app/services/omdb-api.service';
+import { MediaDetailPage } from '../media-detail.page';
 
 @Component({
   selector: 'app-movie-detail',
   templateUrl: './movie-detail.page.html',
   styleUrls: ['./../media-detail.page.scss'],
 })
-export class MovieDetailPage {
+export class MovieDetailPage extends MediaDetailPage {
 
   movie: Movie;
   imageUrl: string;
   isFavorite: boolean;
 
-  private bookemarkedMedia: BookmarkedMedia;
-
-  constructor(public api: OmdbApiService, private route: ActivatedRoute, private bookmarkService: BookmarkService) { }
+  constructor(public api: OmdbApiService,
+    private route: ActivatedRoute,
+    bookmarkService: BookmarkService) { 
+      super(bookmarkService);
+    }
 
   async ionViewWillEnter(){
     var id = this.route.snapshot.paramMap.get('id');
@@ -32,24 +35,5 @@ export class MovieDetailPage {
     };
 
     this.isFavorite = await this.bookmarkService.isMediaAlreadyBookmarked(this.bookemarkedMedia);
-  }
-
-  async onFavoriteButtonClicked(){
-    this.isFavorite = !this.isFavorite;
-
-    if (this.isFavorite == true){
-      await this.saveMovieToBookmark();
-    }
-    else {
-      this.removeFromBookmark();
-    }
-  }
-
-  async saveMovieToBookmark(){
-    await this.bookmarkService.saveToBookmark(this.bookemarkedMedia);
-  }
-
-  async removeFromBookmark(){
-    await this.bookmarkService.removeFromBookmark(this.bookemarkedMedia);
   }
 }

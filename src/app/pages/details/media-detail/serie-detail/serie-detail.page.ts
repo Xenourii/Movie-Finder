@@ -4,25 +4,26 @@ import { BookmarkService } from './../../../../services/bookmark.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component } from '@angular/core';
 import { OmdbApiService } from 'src/app/services/omdb-api.service';
+import { MediaDetailPage } from '../media-detail.page';
 
 @Component({
   selector: 'app-serie-detail',
   templateUrl: './serie-detail.page.html',
   styleUrls: ['./../media-detail.page.scss'],
 })
-export class SerieDetailPage {
+export class SerieDetailPage extends MediaDetailPage {
 
   serie: Serie;
   imageUrl: string;
   isFavorite: boolean;
   seasons: string[];
 
-  private bookemarkedMedia: BookmarkedMedia;
-
   constructor(public router: Router,
     public api: OmdbApiService,
     private route: ActivatedRoute,
-    private bookmarkService: BookmarkService) { }
+    bookmarkService: BookmarkService) {
+      super(bookmarkService);
+     }
 
     async ionViewWillEnter(){
       var id = this.route.snapshot.paramMap.get('id');
@@ -47,26 +48,7 @@ export class SerieDetailPage {
         this.seasons.push(i.toString());
       }
     }
-  
-    async onFavoriteButtonClicked(){
-      this.isFavorite = !this.isFavorite;
-  
-      if (this.isFavorite == true){
-        await this.saveMovieToBookmark();
-      }
-      else {
-        this.removeFromBookmark();
-      }
-    }
-  
-    async saveMovieToBookmark(){
-      await this.bookmarkService.saveToBookmark(this.bookemarkedMedia);
-    }
-  
-    async removeFromBookmark(){
-      await this.bookmarkService.removeFromBookmark(this.bookemarkedMedia);
-    }
-
+    
     async onSeasonClicked(seasonNumber){
       await this.router.navigate(['/season-detail/' + this.serie.imdbID + '/' + seasonNumber]);
     }
