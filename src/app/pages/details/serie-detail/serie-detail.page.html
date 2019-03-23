@@ -2,7 +2,11 @@
   <ion-toolbar>
     <ion-title>Serie detail</ion-title>
     <ion-buttons slot="start">
-        <ion-back-button defaultHref="/"></ion-back-button> <!-- TODO: https://www.npmjs.com/package/ion-back-button-tabs -->
+        <ion-back-button-tabs 
+        defaultHref="/tabs/serieTab" 
+        tabsPrefix="tabs" 
+        tabsPageSelector="app-tabs"> <!-- Fix of that issue: https://github.com/ionic-team/ionic/issues/15216 -->
+      </ion-back-button-tabs>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
