@@ -11,11 +11,11 @@
 
   <h1>Season {{seasonNumber}}: {{seasonResult?.Title}}</h1>
 
-  <ion-label *ngIf="this.seasonResult?.Response == 'False'">Season not found!</ion-label>
+  <ion-label *ngIf="this.seasonResult?.Response == 'False'">No episode found!</ion-label>
 
   <ion-list *ngIf="this.seasonResult?.Response == 'True'">
       <ion-item *ngFor="let episode of seasonResult?.Episodes" (click)="onEpisodeClicked(episode)">
-          <ion-label>{{episode?.Episode}} | {{episode?.Title}}</ion-label>
+          <ion-label>{{episode?.Episode}}. {{episode?.Title}}</ion-label>
       </ion-item>
     </ion-list>
 

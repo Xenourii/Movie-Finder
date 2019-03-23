@@ -41,6 +41,9 @@ export class UserTabPage {
     else if (media.Type == "series"){
       await this.router.navigate(['/serie-detail/' + media.imdbID]);
     }
+    else if (media.Type == "episode"){
+      await this.router.navigate(['/episode-detail/' + media.imdbID]);
+    }
     else {
       console.log("Unknown media Type (" + media.Type + ")");
     }

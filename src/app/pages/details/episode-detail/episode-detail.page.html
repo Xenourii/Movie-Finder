@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Episode detail</ion-title>
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <div class=background-image>
+        <ion-img class="image" [src]="imageUrl"></ion-img>
+  
+        <div class="informations">
+            <ion-grid class="grid">
+              <ion-row class="title-grid">
+                  <ion-col size-xs="12" size-sm="6" size-md="4">
+                      <h1 class="title">{{episode?.Title}}</h1>
+                  </ion-col>
+              </ion-row>
+        
+              <ion-row class="info-grid">
+                  <ion-col size-xs="12" size-sm="12" size-md="6" size-lg="6" size-xl="6">
+                  <p class="plot" *ngIf="episode?.Plot != 'N/A'">{{episode?.Plot}}</p>
+                </ion-col>
+                <ion-col>
+        
+                  <ion-grid>
+                    <ion-row *ngIf="episode?.Episode != 'N/A'"><span class=info-label>Episode n°</span> {{episode?.Episode}}</ion-row>
+                    <ion-row *ngIf="episode?.Season != 'N/A'"><span class=info-label>Season</span> {{episode?.Season}}</ion-row>
+                    <ion-row *ngIf="episode?.Year != 'N/A'"><span class=info-label>Year</span> {{episode?.Year}}</ion-row>
+                    <ion-row *ngIf="episode?.Genre != 'N/A'"><span class=info-label>Genre</span> {{episode?.Genre}}</ion-row>
+                    <ion-row *ngIf="episode?.Actors != 'N/A'"> <span class="info-label">With</span> {{episode?.Actors}} </ion-row>
+                    <ion-row *ngIf="episode?.Awards != 'N/A'"> <span class="info-label">Awards</span> {{episode?.Awards}} </ion-row>
+                    <ion-row *ngIf="episode?.Rated != 'N/A'"> <span class="info-label">Rated</span> {{episode?.Rated}}</ion-row>
+                    <ion-row *ngIf="episode?.imdbRating != 'N/A'"> <span class="info-label">Rating</span> {{episode?.imdbRating}}/10 </ion-row>
+                    <ion-row *ngIf="episode?.imdbVotes != 'N/A'"> <span class="info-label">Number of votes</span> {{episode?.imdbVotes}} </ion-row>
+                    <ion-row *ngIf="episode?.Runtime != 'N/A'"> <span class="info-label">Duration</span> {{episode?.Runtime}} </ion-row>
+                  </ion-grid>
+        
+                </ion-col>
+              </ion-row>
+              <app-favorite-button isFavorite="{{isFavorite}}" (click)="onFavoriteButtonClicked()"></app-favorite-button>
+              
+            </ion-grid>
+        </div>
+    </div>
+
+</ion-content>

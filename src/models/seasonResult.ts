@@ -1,8 +1,8 @@
-import { EpisodeResult } from "./EpisodeResult";
+import { episodeResult } from "./episodeResult";
 
 export interface SeasonResult {
     Title?: string;
     Season?: string;
-    Episodes?: EpisodeResult[];
+    Episodes?: episodeResult[];
     Response: string;
 }

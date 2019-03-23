@@ -1,4 +1,4 @@
-export interface EpisodeResult {
+export interface episodeResult {
     Title: string;
     Released?: string;
     Episode?: string;

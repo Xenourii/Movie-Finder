@@ -21,18 +21,18 @@ export class HttpClientProviderService {
       }
       else {
         var cordovaResult = await this.httpCordova.get(url, {}, {});
-        if (cordovaResult.status == 404){
-          return false;
+        if (cordovaResult.status == 200){
+          return true;
         } 
       }
 
-      return true;
+      return false;
 
     } catch (error) {
       if (error.status == 200){
         return true;
       }
-
+      
       return false;
     }
   }

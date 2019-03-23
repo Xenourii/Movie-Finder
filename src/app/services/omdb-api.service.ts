@@ -36,6 +36,10 @@ export class OmdbApiService {
     return imageUrl;
   }
 
+  async verifyImageUrl(imageUrl: string) : Promise<boolean> {
+    return await this.http.isExists(imageUrl);
+  }
+
   async getMediaInfo<T>(id: string) : Promise<T> {
     const url = `${omdbApiUrl}&i=${id}&plot=full`;
     return await this.fetch<T>(url);
