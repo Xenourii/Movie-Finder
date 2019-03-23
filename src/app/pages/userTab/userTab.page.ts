@@ -63,14 +63,10 @@ export class UserTabPage {
       var file = event.target.files[0] as File;
       const data = await new Response(file).text();
 
-      console.log("format=" + file.type);
-
       if (file.type == "text/csv" || "application/vnd.ms-excel") {
-        console.log("upload csv");
         await this.importCsv(data);
       }
       else if (file.type == "application/json"){
-        console.log("upload json");
         await this.importJson(data);
       }
       else {

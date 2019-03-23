@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Platform } from "@ionic/angular";
-import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse, HttpHeaderResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { HTTP } from '@ionic-native/http/ngx';
-import { Observable } from 'rxjs';
-
-
 
 @Injectable({
   providedIn: 'root'

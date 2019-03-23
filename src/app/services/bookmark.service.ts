@@ -55,8 +55,6 @@ export class BookmarkService {
   async isMediaAlreadyBookmarked(media: BookmarkedMedia) : Promise<boolean> {
     try {
       var bookmarkedMedias = await this.storage.get<BookmarkedMedia[]>(bookmarkedMediaKey);
-      console.log(bookmarkedMedias);
-      console.log(this.isMediaIncluedIn(media, bookmarkedMedias));
       return this.isMediaIncluedIn(media, bookmarkedMedias);
     } catch (error) {
       console.log(error);

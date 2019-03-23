@@ -23,7 +23,6 @@ export abstract class MediaTabPage {
     this.currentPageNumber++;
 
     if (this.currentPageNumber * 10 < this.searchResult.totalResults){
-      console.log("page=" + this.currentPageNumber + " total=" + this.searchResult.totalResults);
       var res = await this.getMediaResult();
       res.Search.forEach(element => {
         this.searchResult.Search.push(element);
