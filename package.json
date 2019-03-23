@@ -46,7 +46,6 @@
     "cordova-sqlite-storage": "^3.0.0",
     "core-js": "^2.5.4",
     "es6-promise-plugin": "^4.2.2",
-    "ion-back-button-tabs": "^2.2.0",
     "papaparse": "^4.6.3",
     "rxjs": "~6.3.3",
     "zone.js": "~0.8.26"
