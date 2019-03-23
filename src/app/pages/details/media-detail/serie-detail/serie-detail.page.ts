@@ -1,6 +1,6 @@
-import { BookmarkedMedia } from './../../../../models/bookmarkedMedia';
-import { Serie } from './../../../../models/serie';
-import { BookmarkService } from './../../../services/bookmark.service';
+import { BookmarkedMedia } from './../../../../../models/bookmarkedMedia';
+import { Serie } from './../../../../../models/serie';
+import { BookmarkService } from './../../../../services/bookmark.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component } from '@angular/core';
 import { OmdbApiService } from 'src/app/services/omdb-api.service';
@@ -8,7 +8,7 @@ import { OmdbApiService } from 'src/app/services/omdb-api.service';
 @Component({
   selector: 'app-serie-detail',
   templateUrl: './serie-detail.page.html',
-  styleUrls: ['./serie-detail.page.scss'],
+  styleUrls: ['./../media-detail.page.scss'],
 })
 export class SerieDetailPage {
 

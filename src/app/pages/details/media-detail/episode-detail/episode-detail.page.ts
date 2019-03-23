@@ -1,6 +1,6 @@
-import { BookmarkService } from './../../../services/bookmark.service';
-import { BookmarkedMedia } from './../../../../models/bookmarkedMedia';
-import { Episode } from './../../../../models/episode';
+import { BookmarkService } from './../../../../services/bookmark.service';
+import { BookmarkedMedia } from './../../../../../models/bookmarkedMedia';
+import { Episode } from './../../../../../models/episode';
 import { ActivatedRoute } from '@angular/router';
 import { Component } from '@angular/core';
 import { OmdbApiService } from 'src/app/services/omdb-api.service';
@@ -8,7 +8,7 @@ import { OmdbApiService } from 'src/app/services/omdb-api.service';
 @Component({
   selector: 'app-episode-detail',
   templateUrl: './episode-detail.page.html',
-  styleUrls: ['./episode-detail.page.scss'],
+  styleUrls: ['./../media-detail.page.scss'],
 })
 export class EpisodeDetailPage {
 

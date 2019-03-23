@@ -1,6 +1,6 @@
-import { BookmarkedMedia } from './../../../../models/bookmarkedMedia';
-import { BookmarkService } from './../../../services/bookmark.service';
-import { Movie } from './../../../../models/movie';
+import { BookmarkedMedia } from './../../../../../models/bookmarkedMedia';
+import { BookmarkService } from './../../../../services/bookmark.service';
+import { Movie } from './../../../../../models/movie';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OmdbApiService } from 'src/app/services/omdb-api.service';
@@ -8,7 +8,7 @@ import { OmdbApiService } from 'src/app/services/omdb-api.service';
 @Component({
   selector: 'app-movie-detail',
   templateUrl: './movie-detail.page.html',
-  styleUrls: ['./movie-detail.page.scss'],
+  styleUrls: ['./../media-detail.page.scss'],
 })
 export class MovieDetailPage {
 
