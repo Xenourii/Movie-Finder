@@ -17,7 +17,7 @@ export class FileService {
       filename += ".csv";
     }
 
-    await this.file.copyFile(this.file.applicationDirectory + '/www/assets/exports', 'empty', this.file.applicationStorageDirectory, filename);
+    await this.file.createFile(this.file.applicationStorageDirectory, filename, true);
     await this.file.writeExistingFile(this.file.applicationStorageDirectory, filename, data);
     
     var filePath = this.file.applicationStorageDirectory + "/" + filename;
