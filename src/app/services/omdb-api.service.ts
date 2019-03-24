@@ -3,8 +3,6 @@ import { HttpClientProviderService } from './http-client-provider.service';
 import { Injectable } from '@angular/core';
 import { SearchResult } from './../../models/searchResult';
 
-import { forkJoin } from 'rxjs';import { Observable, of, throwError } from 'rxjs';
-
 const omdbApiUrl: string = "http://www.omdbapi.com/?apikey=75522b56";
 const omdbImageApiUrl: string = "http://img.omdbapi.com/?apikey=75522b56";
 
